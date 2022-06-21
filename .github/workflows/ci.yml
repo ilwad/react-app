@@ -28,3 +28,4 @@ jobs:
       - name: Build Projects
         if: github.event_name == 'push'
         run: npm run build
+        
