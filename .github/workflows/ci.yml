@@ -14,7 +14,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Cache node-modules
       - name: Use NodeJS
         uses: actions/setup-node@v1
         with:
@@ -28,4 +27,6 @@ jobs:
       - name: Build Projects
         if: github.event_name == 'push'
         run: npm run build
-        
+      - name: Deploy to Staging
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+        run: npx surge --project ./build --domain untidy-plough.surge.sh
