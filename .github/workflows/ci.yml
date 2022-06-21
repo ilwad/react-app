@@ -13,8 +13,7 @@ jobs:
       SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: Use NodeJS
         uses: actions/setup-node@v1
         with:
@@ -25,9 +24,3 @@ jobs:
       - run: npm test -- --coverage
         env:
           ci: true
-      - name: Build Projects
-        if: github.event_name == 'push'
-        run: npm run build
-      - name: Deploy to Staging
-        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
-        run: npx surge --project ./build --domain untidy-plough.surge.sh
