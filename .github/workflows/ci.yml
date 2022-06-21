@@ -1,22 +1,22 @@
 name: CI
-on: 
+on:
   pull_request:
     branches: [develop, master]
   push:
-    branches: [develop, master]  
+    branches: [develop, master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env: 
-        SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-        SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+    env:
+      SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+      SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
-    steps: 
+    steps:
       - uses: actions/checkout@v2
       - name: Use NodeJS
         uses: actions/setup-node@v1
-        with: 
+        with:
           node-version: "12.x"
       - run: npm install --global prettier
       - run: npm ci
