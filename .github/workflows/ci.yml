@@ -52,4 +52,3 @@ jobs:
       - name: Deploy to Production
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx surge --project ./build --domain untidy-plough.surge.sh
-        
